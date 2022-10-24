@@ -15,9 +15,10 @@ public class TrafficLights : MonoBehaviour
     public GameObject t3green;
     public GameObject t3red;
 
-    public float stateTimer;
-    public int state;
 
+    public float stateTimer;
+    private int state;
+    private bool stop;
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +43,17 @@ public class TrafficLights : MonoBehaviour
     void Update()
     {
 
-        if (state == 0)
+        stateTimer -= Time.deltaTime;
+        if (stateTimer <= 0.0f)
         {
-            stateTimer -= Time.deltaTime;
+            SetState(0);
+            stateTimer = 10.0f;
+        }
+        else if (state == 0 && stateTimer >= 0)
+        {
             SetState(1);
         }
+
     }
 
     void SetState(int c)
@@ -72,3 +79,4 @@ public class TrafficLights : MonoBehaviour
         }
     }
 }
+
