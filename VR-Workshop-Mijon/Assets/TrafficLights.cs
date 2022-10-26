@@ -43,16 +43,26 @@ public class TrafficLights : MonoBehaviour
     void Update()
     {
 
-        stateTimer -= Time.deltaTime;
-        if (stateTimer <= 0.0f)
+        //stateTimer -= Time.deltaTime;
+        //if (stateTimer <= 0.0f)
+        //{
+        //    SetState(0);
+        //    stateTimer = 10.0f;
+        //}
+        //else if(stateTimer <= 0.0f)
+        //{
+        //    SetState(1);
+
+        //}
+
+        stateTimer = stateTimer - Time.deltaTime;
+        if (stateTimer < 0)
         {
-            SetState(0);
+            if (state == 1) SetState(0);
+            else SetState(1);
             stateTimer = 10.0f;
         }
-        else if (state == 0 && stateTimer >= 0)
-        {
-            SetState(1);
-        }
+
 
     }
 
